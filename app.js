@@ -14,6 +14,7 @@ dotenv.config();
 // Handling uncaught Exception
 process.on("uncaughtException", (err) => {
   console.log(`Error: ${err.message}`);
+  console.log(`Error: ${err}`);
   console.log(`shutting down the server for handling uncaught exception`);
 });
 
@@ -30,7 +31,7 @@ app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
 
-// app.use("/auth", require("./auth/router"));
+app.use("/auth", require("./auth/router"));
 
 const server = app.listen(process.env.PORT, () => {
   console.log(`Server started at http://localhost:${process.env.PORT}`);
